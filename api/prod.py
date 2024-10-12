@@ -1,9 +1,11 @@
 from .settings import *
 import os
+from dotenv import dotenv_values
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+config  = dotenv_values(".env")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
