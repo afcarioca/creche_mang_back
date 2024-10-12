@@ -21,6 +21,8 @@ ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 # environments like Vercel. You can use a database over HTTP, hosted elsewhere.
 
 
+"""
+
 
 DATABASES = {
     'default': {
@@ -33,6 +35,17 @@ DATABASES = {
     }
 }
 
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "postgres",
+        'USER': "postgres.jkwzjaociiifhlgxhyik",
+        'PASSWORD': "2X#zKVjvHMm*5k6",
+        'HOST': "aws-0-us-west-1.pooler.supabase.com",
+        'PORT': "6543",
+    }
+}
 
 
 
