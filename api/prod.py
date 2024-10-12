@@ -18,7 +18,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 # Note: Django modules for using databases are not support in serverless
-# environments like Vercel. You can use a database over HTTP, hosted elsewhere.
+## environments like Vercel. You can use a database over HTTP, hosted elsewhere.
 
 
 DATABASES = {
