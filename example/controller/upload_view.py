@@ -15,7 +15,6 @@ class UploadView(APIView):
         file_obj = request.FILES["xlsx"]
         df = pd.read_excel(file_obj)
         print(df)
-       
-        return HttpResponse()
+        return HttpResponse(JsonResponse({'status': 'OK', 'message':'Sucesso'}), content_type="application/json", status=200)
         
      
