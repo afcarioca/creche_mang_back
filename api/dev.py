@@ -11,12 +11,16 @@ SECRET_KEY = config["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', "192.168.0.21"]
+
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
+    "rest_framework",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -25,6 +29,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'example'
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://192.168.0.21:3000",  # URL do seu frontend (ajuste conforme necessário)
+    "http://localhost:3000",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -42,6 +53,8 @@ DATABASES = {
 }
 
 
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True
 
 
 
