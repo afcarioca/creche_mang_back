@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 class LoginView(APIView):
-
+    
     def post(self, request):
         data = json.loads(request.body)
         form = LoginForm(data)

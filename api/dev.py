@@ -17,10 +17,11 @@ ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', "192.168.0.21"]
 
 
 # Application definition
-
+#'rest_framework_simplejwt',
 INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
+    "rest_framework.authtoken", # Add
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

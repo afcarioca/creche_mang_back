@@ -17,6 +17,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 # Application definition
 INSTALLED_APPS = [
+    "rest_framework.authtoken", # Add
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
