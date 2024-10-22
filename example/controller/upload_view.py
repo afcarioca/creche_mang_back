@@ -11,8 +11,6 @@ import pandas as pd
 from django.core import serializers
 
 class UploadView(APIView):
-  
-
     def post(self, request):
         file_obj = request.FILES["xlsx"]
         df = pd.read_excel(file_obj)
