@@ -1,5 +1,4 @@
 from django import forms
-from jsonschema import ValidationError
 
 class AlunoForm(forms.Form):
     nome = forms.CharField(max_length=200)
