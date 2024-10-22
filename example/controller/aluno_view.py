@@ -19,6 +19,7 @@ class AlunoView(APIView):
         turma = form.cleaned_data["turma"]
         sexo = form.cleaned_data["sexo"]
         bolsa_familia = form.cleaned_data["bolsa_familia"]
+     
 
         if  isinstance(bolsa_familia, bool) or isinstance(turma, bool) or isinstance(sexo, bool):
             return HttpResponse(JsonResponse({'status': 'Erro', 'message': 'Erros de Validação'}),  content_type="application/json", status= 400) 
@@ -31,6 +32,7 @@ class AlunoView(APIView):
             turma = turma.upper(),
             bolsa_familia= bolsa_familia,
             sexo = sexo.upper(),
+            ativo = 1,
         )
         aluno.save()
         return HttpResponse(JsonResponse({'status': 'OK', 'message':'Aluno registrado!'}), content_type="application/json", status=200)
@@ -58,6 +60,7 @@ class AlunoView(APIView):
         turma = form.cleaned_data["turma"]
         sexo = form.cleaned_data["sexo"]
         bolsa_familia = form.cleaned_data["bolsa_familia"]
+        
 
         if  isinstance(bolsa_familia, bool) or isinstance(turma, bool) or isinstance(sexo, bool):
             return HttpResponse(JsonResponse({'status': 'Erro', 'message': 'Erros de Validação'}),  content_type="application/json", status= 400) 
@@ -71,6 +74,7 @@ class AlunoView(APIView):
         aluno.turma = turma.upper()
         aluno.bolsa_familia = bolsa_familia
         aluno.sexo = sexo.upper()
+        aluno.ativo = 1
         aluno.save()
 
         return HttpResponse(JsonResponse({"status": "OK", "message": "Aluno Atualizado!"}), content_type="application/json", status=200)

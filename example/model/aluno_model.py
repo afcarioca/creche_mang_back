@@ -6,7 +6,7 @@ class AlunoModel(models.Model):
     turma = models.CharField(max_length=20)
     bolsa_familia= models.BooleanField()
     sexo = models.CharField(max_length=20)
-
+    ativo= models.BooleanField()
 
     class Meta:
         db_table ="aluno"

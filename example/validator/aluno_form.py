@@ -5,6 +5,7 @@ class AlunoForm(forms.Form):
     turma = forms.CharField(max_length=20)
     sexo = forms.CharField(max_length=20)
     bolsa_familia = forms.IntegerField(required=True)
+   
 
 
     def clean_sexo(self):
@@ -24,3 +25,4 @@ class AlunoForm(forms.Form):
         if bolsa_familia not in (0, 1):
             return False
         return bolsa_familia
+    
