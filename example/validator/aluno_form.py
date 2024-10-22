@@ -9,13 +9,13 @@ class AlunoForm(forms.Form):
 
     def clean_sexo(self):
         sexo = self.cleaned_data.get("sexo")
-        if sexo not in("m", "f"):
+        if sexo not in("M", "F"):
             return False
         return sexo
 
     def clean_turma(self):
         turma = self.cleaned_data.get("turma")
-        if turma not in ("b1","b2", "m1", "m2"):
+        if turma not in ("B1","B2", "M1", "M2"):
             return False
         return turma 
 
