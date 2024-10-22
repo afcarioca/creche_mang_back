@@ -5,6 +5,7 @@ from example.controller.login_view import LoginView
 from example.controller.upload_view import UploadView
 from example.controller.home_view import HomeView
 from example.controller.register_view import RegisterView
+from example.controller.aluno_view import AlunoView
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -13,6 +14,7 @@ urlpatterns = [
     path("api/login/", LoginView.as_view(), name="login"),
     path("api/upload/", UploadView.as_view(), name="upload"),
     path("api/home/", HomeView.as_view(), name="home"),
-    path("api/register/", RegisterView.as_view(), name="register")
+    path("api/register/", RegisterView.as_view(), name="register"),
+    path("api/form/", AlunoView.as_view(), name="form")
 ]
 
