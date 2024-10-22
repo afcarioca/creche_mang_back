@@ -15,6 +15,7 @@ urlpatterns = [
     path("api/upload/", UploadView.as_view(), name="upload"),
     path("api/home/", HomeView.as_view(), name="home"),
     path("api/register/", RegisterView.as_view(), name="register"),
-    path("api/form/", AlunoView.as_view(), name="form")
+    path("api/form/", AlunoView.as_view(), name="form"),
+    path("api/form/<int:id>/", AlunoView.as_view(), name="form")
 ]
 
