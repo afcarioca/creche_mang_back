@@ -11,7 +11,7 @@ SECRET_KEY = config["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', "192.168.0.21"]
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', "192.168.0.6","192.168.0.4", "192.168.0.21", "192.168.137.56", "192.168.42.138", "192.168.42.77"]
 
 
 
@@ -21,7 +21,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', "192.168.0.21"]
 INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
-    "rest_framework.authtoken", # Add
+    "rest_framework.authtoken", 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,10 +31,15 @@ INSTALLED_APPS = [
     'example'
 ]
 
+
 CORS_ALLOWED_ORIGINS = [
-    "http://192.168.0.21:3000",  # URL do seu frontend (ajuste conforme necessário)
+    "http://192.168.0.6:3000",  
+    "http://100.91.255.86:3000",  
+    "http://192.168.137.56:3000",  
+    "http://192.168.42.138:3000",  
     "http://localhost:3000",
 ]
+
 
 CORS_ALLOW_ALL_ORIGINS = True
 
