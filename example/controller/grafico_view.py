@@ -41,11 +41,11 @@ class GraficoView(APIView):
         df.replace("F", "Feminino", inplace=True)
         
         dic_turma["nome"] = turma.lower()
-        dic_turma["qtd"] = len(df)
-        dic_turma["sexo"]["Masculino"] = df["sexo"].value_counts().get("Masculino", 0) 
-        dic_turma["sexo"]["Feminino"] = df["sexo"].value_counts().get("Feminino", 0)
-        dic_turma["bolsa_familia"]["Sim"] = df["bolsa_familia"].value_counts().value_counts().get(True, 0) 
-        dic_turma["bolsa_familia"]["Não"] = df["bolsa_familia"].value_counts().get(False, 0)
+        dic_turma["qtd"] = int(len(df))
+        dic_turma["sexo"]["Masculino"] = int(df["sexo"].value_counts().get("Masculino", 0)) 
+        dic_turma["sexo"]["Feminino"] = int(df["sexo"].value_counts().get("Feminino", 0))
+        dic_turma["bolsa_familia"]["Sim"] = int(df["bolsa_familia"].value_counts().value_counts().get(True, 0)) 
+        dic_turma["bolsa_familia"]["Não"] = int(df["bolsa_familia"].value_counts().get(False, 0))
 
        
 
