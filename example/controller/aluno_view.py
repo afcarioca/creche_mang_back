@@ -36,7 +36,11 @@ class AlunoView(APIView):
         return HttpResponse(JsonResponse({'status': 'OK', 'message':'Aluno registrado!'}), content_type="application/json", status=200)
 
     def get(self, request):
+        data = json.loads(request.body)
+        turma = data["turma"].upper()
         data = AlunoModel.objects.all().values()
+        if turma != "TODAS":
+          data = AlunoModel.objects.filter(turma=turma).values()
         json_data = json.dumps(list(data))
         alunos =json.loads(json_data)
         return HttpResponse(JsonResponse({"status": "OK", "message": "Lista de Alunos!", "data":alunos}), content_type="application/json", status=200)
