@@ -40,9 +40,9 @@ class AlunoView(APIView):
     def get(self, request):
         data = json.loads(request.body)
         turma = data["turma"].upper()
-        data = AlunoModel.objects.all().values()
+        data =  AlunoModel.objects.filter(ativo=True).values()
         if turma != "TODAS":
-          data = AlunoModel.objects.filter(turma=turma).values()
+          data = AlunoModel.objects.filter(turma=turma, ativo=True).values()
         json_data = json.dumps(list(data))
         alunos =json.loads(json_data)
         return HttpResponse(JsonResponse({"status": "OK", "message": "Lista de Alunos!", "data":alunos}), content_type="application/json", status=200)
@@ -68,6 +68,9 @@ class AlunoView(APIView):
         if not AlunoModel.objects.filter(id=id).exists():
             return HttpResponse(JsonResponse({'status': 'Erro', 'message':'O aluno não existe!'}), content_type="application/json", status=400)
 
+        if  AlunoModel.objects.filter(id=id, ativo=False).exists():
+            return HttpResponse(JsonResponse({'status': 'Erro', 'message':'Aluno Inativo!'}), content_type="application/json", status=400)
+
 
         aluno= AlunoModel.objects.get(id=id)
         aluno.nome = nome
@@ -78,3 +81,12 @@ class AlunoView(APIView):
         aluno.save()
 
         return HttpResponse(JsonResponse({"status": "OK", "message": "Aluno Atualizado!"}), content_type="application/json", status=200)
+
+    def delete(self, request, id):
+        if not AlunoModel.objects.filter(id=id).exists():
+            return HttpResponse(JsonResponse({'status': 'Erro', 'message':'O aluno não existe!'}), content_type="application/json", status=400)
+
+        aluno= AlunoModel.objects.get(id=id)
+        aluno.ativo = 0
+        aluno.save()
+        return HttpResponse(JsonResponse({"status":"OK", "message": "Aluno removido do Sistema"}), content_type="application/json", status=200)
