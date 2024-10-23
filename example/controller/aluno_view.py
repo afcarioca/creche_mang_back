@@ -35,7 +35,7 @@ class AlunoView(APIView):
             ativo = 1,
         )
         aluno.save()
-        return HttpResponse(JsonResponse({'status': 'OK', 'message':'Aluno registrado!'}), content_type="application/json", status=200)
+        return HttpResponse(JsonResponse({'status': 'OK',"id": aluno.id, 'message':'Aluno registrado!'}), content_type="application/json", status=200)
 
     def get(self, request):
         data = json.loads(request.body)
