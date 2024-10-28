@@ -42,10 +42,10 @@ class GraficoView(APIView):
         
         dic_turma["nome"] = turma.lower()
         dic_turma["qtd"] = int(len(df))
-        dic_turma["sexo"]["Masculino"] = int(df["sexo"].value_counts().get("Masculino", 0)) 
-        dic_turma["sexo"]["Feminino"] = int(df["sexo"].value_counts().get("Feminino", 0))
-        dic_turma["bolsa_familia"]["Sim"] = int(df["bolsa_familia"].value_counts().value_counts().get(True, 0)) 
-        dic_turma["bolsa_familia"]["Não"] = int(df["bolsa_familia"].value_counts().get(False, 0))
+        dic_turma["sexo"]["Masculino"] = round((int(df["sexo"].value_counts().get("Masculino", 0))/dic_turma["qtd"])*100,1)
+        dic_turma["sexo"]["Feminino"] = round((int(df["sexo"].value_counts().get("Feminino", 0))/dic_turma["qtd"])*100,1)
+        dic_turma["bolsa_familia"]["Sim"] = round((int(df["bolsa_familia"].value_counts().get(True, 0))/dic_turma["qtd"])*100,1)
+        dic_turma["bolsa_familia"]["Não"] = round((int(df["bolsa_familia"].value_counts().get(False, 0))/dic_turma["qtd"])*100,1)
 
        
 

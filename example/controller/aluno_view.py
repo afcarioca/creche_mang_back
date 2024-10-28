@@ -39,9 +39,9 @@ class AlunoView(APIView):
             aluno.save()
             return HttpResponse(JsonResponse({'status': 'OK',"id": aluno.id, 'message':'Aluno registrado!'}), content_type="application/json", status=200)
         
-        alunos =  AlunoModel.objects.filter(ativo=True).values("id", "nome")
+        alunos =  AlunoModel.objects.filter(ativo=True).values("id", "nome").order_by("id")
         if data["turma"] != "TODAS":
-           alunos = AlunoModel.objects.filter(turma=data["turma"], ativo=True).values("id", "nome")
+           alunos = AlunoModel.objects.filter(turma=data["turma"], ativo=True).values("id", "nome").order_by("id")
         json_data = json.dumps(list(alunos))
         alunos =json.loads(json_data)
 
@@ -87,14 +87,14 @@ class AlunoView(APIView):
             return HttpResponse(JsonResponse({'status': 'Erro', 'message':'O aluno não existe!'}), content_type="application/json", status=400)
 
         
-        '''
+        
         
         
       
         if  AlunoModel.objects.filter(id=id, ativo=False).exists():
             return HttpResponse(JsonResponse({'status': 'Erro', 'message':'Aluno Inativo!'}), content_type="application/json", status=400)
         
-        '''
+        
 
         aluno= AlunoModel.objects.get(id=id)
         aluno.nome = nome
