@@ -4,9 +4,13 @@ from example.model.aluno_model import AlunoModel
 from example.validator.aluno_form import AlunoForm
 import json
 from django.http import JsonResponse
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class AlunoView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes =[IsAuthenticated]
     def post(self, request):
        
         data = json.loads(request.body)
@@ -48,6 +52,7 @@ class AlunoView(APIView):
         return HttpResponse(JsonResponse({"status": "OK", "message": "sucesso", "data":alunos}), content_type="application/json", status=200)
         
     def get(self, request, id=None):
+       
         
         if id is None:
             data = json.loads(request.body)
@@ -62,8 +67,9 @@ class AlunoView(APIView):
         data =  AlunoModel.objects.filter(id=id).values()
         json_data = json.dumps(list(data))
         aluno =json.loads(json_data)
+       
         return HttpResponse(JsonResponse({"status": "OK", "message": "sucesso", "data":aluno}), content_type="application/json", status=200)
-
+    
 
     def put(self, request, id):
         data = json.loads(request.body)

@@ -4,8 +4,12 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 import pandas as pd
 from example.model.aluno_model import AlunoModel
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class GraficoView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes =[IsAuthenticated]
     def post(self, request):
         data = json.loads(request.body)
         turma = data["turma"].upper()
