@@ -30,6 +30,14 @@ class GraficoView(APIView):
            "bolsa_familia":{
               "Sim":0,
               "Não":0
+           },
+            "jogos":{
+              "Sim":0,
+              "Não":0
+           },
+            "alcool":{
+              "Sim":0,
+              "Não":0
            }
         }
 
@@ -48,8 +56,15 @@ class GraficoView(APIView):
         dic_turma["qtd"] = int(len(df))
         dic_turma["sexo"]["Masculino"] = round((int(df["sexo"].value_counts().get("Masculino", 0))/dic_turma["qtd"])*100,1)
         dic_turma["sexo"]["Feminino"] = round((int(df["sexo"].value_counts().get("Feminino", 0))/dic_turma["qtd"])*100,1)
+        
         dic_turma["bolsa_familia"]["Sim"] = round((int(df["bolsa_familia"].value_counts().get(True, 0))/dic_turma["qtd"])*100,1)
         dic_turma["bolsa_familia"]["Não"] = round((int(df["bolsa_familia"].value_counts().get(False, 0))/dic_turma["qtd"])*100,1)
+        
+        dic_turma["alcool"]["Sim"] = round((int(df["alcool"].value_counts().get(True, 0))/dic_turma["qtd"])*100,1)
+        dic_turma["alcool"]["Não"] = round((int(df["alcool"].value_counts().get(False, 0))/dic_turma["qtd"])*100,1)
+        
+        dic_turma["jogos"]["Sim"] = round((int(df["jogos"].value_counts().get(True, 0))/dic_turma["qtd"])*100,1)
+        dic_turma["jogos"]["Não"] = round((int(df["jogos"].value_counts().get(False, 0))/dic_turma["qtd"])*100,1)
 
        
 

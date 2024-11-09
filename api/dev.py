@@ -1,5 +1,6 @@
 from .settings import *
 from dotenv import dotenv_values
+from datetime import timedelta
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -63,6 +64,9 @@ DATABASES = {
     }
 }
 
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10)
+}
 
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True

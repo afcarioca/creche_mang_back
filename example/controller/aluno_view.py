@@ -12,7 +12,6 @@ class AlunoView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes =[IsAuthenticated]
     def post(self, request):
-       
         data = json.loads(request.body)
         if len(data) != 1:
             form = AlunoForm(data)
@@ -25,21 +24,26 @@ class AlunoView(APIView):
             turma = form.cleaned_data["turma"]
             sexo = form.cleaned_data["sexo"]
             bolsa_familia = form.cleaned_data["bolsa_familia"]
+            alcool = form.cleaned_data["alcool"]
+            jogos = form.cleaned_data["jogos"]
      
 
-            if  isinstance(bolsa_familia, bool) or isinstance(turma, bool) or isinstance(sexo, bool):
+            if  isinstance(bolsa_familia, bool) or isinstance(turma, bool) or isinstance(sexo, bool) or isinstance(alcool, bool) or isinstance(jogos, bool):
                 return HttpResponse(JsonResponse({'status': 'Erro', 'message': 'Erros de Validação'}),  content_type="application/json", status= 400) 
     
             if AlunoModel.objects.filter(nome=nome).exists():
                 return HttpResponse(JsonResponse({'status': 'Erro', 'message':'O aluno já existe!'}), content_type="application/json", status=400)
-
+          
             aluno = AlunoModel.objects.create(
                 nome = nome,
                 turma = turma.upper(),
                 bolsa_familia= bolsa_familia,
                 sexo = sexo.upper(),
+                alcool = alcool,
+                jogos = jogos,
                 ativo = 1,
             )
+          
             aluno.save()
             return HttpResponse(JsonResponse({'status': 'OK',"id": aluno.id, 'message':'Aluno registrado!'}), content_type="application/json", status=200)
         
@@ -50,10 +54,8 @@ class AlunoView(APIView):
         alunos =json.loads(json_data)
 
         return HttpResponse(JsonResponse({"status": "OK", "message": "sucesso", "data":alunos}), content_type="application/json", status=200)
-        
-    def get(self, request, id=None):
        
-        
+    def get(self, request, id=None):
         if id is None:
             data = json.loads(request.body)
             turma = data["turma"].upper()
@@ -84,18 +86,16 @@ class AlunoView(APIView):
         turma = form.cleaned_data["turma"]
         sexo = form.cleaned_data["sexo"]
         bolsa_familia = form.cleaned_data["bolsa_familia"]
+        alcool = form.cleaned_data["alcool"]
+        jogos = form.cleaned_data["jogos"]
         
 
-        if  isinstance(bolsa_familia, bool) or isinstance(turma, bool) or isinstance(sexo, bool):
+        if  isinstance(bolsa_familia, bool) or isinstance(turma, bool) or isinstance(sexo, bool) or isinstance(jogos, bool) or isinstance(alcool, bool):
             return HttpResponse(JsonResponse({'status': 'Erro', 'message': 'Erros de Validação'}),  content_type="application/json", status= 400) 
  
         if not AlunoModel.objects.filter(id=id).exists():
             return HttpResponse(JsonResponse({'status': 'Erro', 'message':'O aluno não existe!'}), content_type="application/json", status=400)
 
-        
-        
-        
-        
       
         if  AlunoModel.objects.filter(id=id, ativo=False).exists():
             return HttpResponse(JsonResponse({'status': 'Erro', 'message':'Aluno Inativo!'}), content_type="application/json", status=400)
@@ -106,6 +106,8 @@ class AlunoView(APIView):
         aluno.nome = nome
         aluno.turma = turma.upper()
         aluno.bolsa_familia = bolsa_familia
+        aluno.alcool = alcool
+        aluno.jogos = jogos
         aluno.sexo = sexo.upper()
         aluno.ativo = 1
         aluno.save()

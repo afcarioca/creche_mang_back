@@ -5,8 +5,9 @@ class AlunoForm(forms.Form):
     turma = forms.CharField(max_length=20)
     sexo = forms.CharField(max_length=20)
     bolsa_familia = forms.IntegerField(required=True)
+    jogos = forms.IntegerField(required=True)
+    alcool = forms.IntegerField(required=True)
    
-
 
     def clean_sexo(self):
         sexo = self.cleaned_data.get("sexo")
@@ -25,4 +26,16 @@ class AlunoForm(forms.Form):
         if bolsa_familia not in (0, 1):
             return False
         return bolsa_familia
+
+    def clean_jogo(self):
+        jogos = self.cleaned_data.get("jogos")
+        if jogos not in (0, 1):
+            return False
+        return jogos
+
+    def clean_alcool(self):
+        alcool = self.cleaned_data.get("alcool")
+        if alcool not in (0, 1):
+            return False
+        return alcool
     

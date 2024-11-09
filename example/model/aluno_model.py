@@ -7,6 +7,9 @@ class AlunoModel(models.Model):
     bolsa_familia= models.BooleanField()
     sexo = models.CharField(max_length=20)
     ativo= models.BooleanField()
+    alcool = models.BooleanField(default=0)
+    jogos = models.BooleanField(default=0)
+
 
     class Meta:
         db_table ="aluno"
