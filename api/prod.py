@@ -13,8 +13,8 @@ config  = dotenv_values(".env")
 
 
 ##SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = config["SECRET_KEY"]
+SECRET_KEY = os.environ.get("SECRET_KEY")
+#SECRET_KEY = config["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
 # Note: Django modules for using databases are not support in serverless
 ## environments like Vercel. You can use a database over HTTP, hosted elsewhere.
 
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -49,13 +49,13 @@ DATABASES = {
         'PORT': "5432",
     }
 }
-'''
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10)
 }
 
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': config["POSTGRES_VERCEL_ENGINE"],
@@ -66,7 +66,7 @@ DATABASES = {
         'PORT': config["POSTGRES_VERCEL_PORT"],
     }
 }
-
+'''
 
 
 
