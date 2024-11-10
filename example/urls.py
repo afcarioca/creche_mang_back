@@ -7,6 +7,7 @@ from example.controller.home_view import HomeView
 from example.controller.register_view import RegisterView
 from example.controller.aluno_view import AlunoView
 from example.controller.grafico_view import GraficoView
+from example.controller.perfl_view import PerfilView
 
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
     path("api/form/", AlunoView.as_view(), name="form"),
     path("api/form/<int:id>/", AlunoView.as_view(), name="form"),
     path("api/grafico/", GraficoView.as_view(), name="grafico"),
+    path("api/perfil/", PerfilView.as_view(), name="perfil"),
     
 ]
 

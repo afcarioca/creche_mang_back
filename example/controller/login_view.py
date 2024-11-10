@@ -25,6 +25,6 @@ class LoginView(APIView):
                 return HttpResponse(JsonResponse({'status': 'Acesso Negado', 'message':'Usuário Inexistente'}), content_type="application/json", status=403)
         
         refresh = RefreshToken.for_user(user)
-        return HttpResponse(JsonResponse({'status': 'OK', 'message':'Sucesso','Refresh':str(refresh),'Token':str(refresh.access_token)}), content_type="application/json", status=200)
+        return HttpResponse(JsonResponse({'status': 'OK', 'message':'Sucesso', 'username':str(user), 'Refresh':str(refresh),'Token':str(refresh.access_token)}), content_type="application/json", status=200)
         
-     
+    

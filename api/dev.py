@@ -12,7 +12,7 @@ SECRET_KEY = config["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', "192.168.0.6","192.168.0.4", "192.168.0.21", "192.168.137.56", "192.168.42.138", "192.168.42.77", " 192.168.42.152", "192.168.0.19","192.168.0.21", "192.168.0.13", "192.168.0.14"]
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', "192.168.0.6","192.168.0.4", "192.168.0.21", "192.168.137.56", "192.168.42.138", "192.168.42.77", " 192.168.42.152", "192.168.0.19","192.168.0.21", "192.168.0.13", "192.168.0.14", "192.168.0.15"]
 
 
 
@@ -43,6 +43,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.0.21:3000",  
     "http://192.168.0.13:3000",  
     "http://192.168.0.14:3000",  
+    "http://192.168.0.15:3000",  
     "http://localhost:3000",
 ]
 
@@ -64,9 +65,12 @@ DATABASES = {
     }
 }
 
+
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10)
 }
+
 
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = True
